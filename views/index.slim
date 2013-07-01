@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    title de.re.com Public Vagrant Boxes
+    meta name="keywords" content="vagrant box open source download centos ubuntu"
+    meta name="author" content="Stefano Zanella"
+    link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+
+  body.span12
+    .page-header
+      h1 de.re.com Public Vagrant Boxes Repository
+      p.lead Public Vagrant base boxes used in open source de.re.com projects. 
+
+    p 
+      | Here you can find the list of available public base boxes used by various
+        projects developed or supported by 
+      a[href="http://www.derecom.it"] de.re.com
+      | . Since we don't believe in black-box magic, we've also open sourced
+        box definitions, so you can decide if you trust their content or not.
+
+    h2 Available Boxes
+
+    table class=['table', 'table-hover', 'table-bordered']
+      thead
+        tr
+          th Name
+          th Description
+          th Size
+          th Links
+
+      tbody
+        tr
+          td: code centos-base-oss
+          td.span10
+              strong CentOS 6.4 x86_64
+              |  Minimal installation, with just base packages, guest additions
+              |  and 
+              strong Puppet 3.2.2
+              |  installed from official Puppetlabs repository.
+          td 419 MB
+          td
+            a[href="boxes/centos-base-oss.box"] image
+            |  | 
+            a[href="https://github.com/derecom/veewee-boxes/tree/master/definitions/centos-base-oss"] definition
+
+        /tr
+        /  td: code ubuntu-base-oss
+        /  td.span10
+        /      strong Ubuntu 12.10 amd64
+        /      |  default installation, with just base packages, guest additions
+        /      |  and 
+        /      strong Puppet 3.2.2
+        /      |  installed from official Puppetlabs repository.
+        /  td 369 MB
+        /  td
+        /    a[href="boxes/ubuntu-base-oss.box"] image
+        /    |  | 
+        /    a[href="https://github.com/derecom/veewee-boxes/tree/master/definitions/ubuntu-base-oss"] definition
+
+    h3 Usage
+    p
+      | If you're using of the open source de.re.com projects that make use of
+        Vagrant, you shouldn't worry about this page, since all shipped 
+      code Vagrantfile
+      |  include the right URL to download the box in case you
+        don't have it available yet.
+
+    p
+      | If you, instead, want to use of our boxes independently from our
+        projects, you can just keep the URL provided below and add it to your
+        Vagrant base box collection!
+
+    script src="http://code.jquery.com/jquery.js"
+    script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"
