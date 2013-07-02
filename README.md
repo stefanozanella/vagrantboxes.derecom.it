@@ -1,3 +1,2 @@
-The OpenShift `ruby` cartridge documentation can be found at:
+== To see this repo in action, please go to http://vagrantboxes.derecom.it
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-ruby/README.md
