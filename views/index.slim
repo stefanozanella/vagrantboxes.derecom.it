@@ -29,8 +29,8 @@ html
           th Links
 
       tbody
-        tr
-          td: code centos-base-oss
+        tr.box_details
+          td: code.box_name centos-base-oss
           td.span10
               strong CentOS 6.4 x86_64
               |  Minimal installation, with just base packages, guest additions
@@ -39,12 +39,12 @@ html
               |  installed from official Puppetlabs repository.
           td 419 MB
           td
-            a[href="boxes/centos-base-oss.box"] image
+            a.box_url  href="boxes/centos-base-oss.box" image
             |  | 
-            a[href="https://github.com/derecom/veewee-boxes/tree/master/definitions/centos-base-oss"] definition
+            a href="https://github.com/derecom/veewee-boxes/tree/master/definitions/centos-base-oss" definition
 
-        /tr
-        /  td: code ubuntu-base-oss
+        /tr.box_details
+        /  td: code.box_name ubuntu-base-oss
         /  td.span10
         /      strong Ubuntu 12.10 amd64
         /      |  default installation, with just base packages, guest additions
@@ -53,9 +53,9 @@ html
         /      |  installed from official Puppetlabs repository.
         /  td 369 MB
         /  td
-        /    a[href="boxes/ubuntu-base-oss.box"] image
+        /    a.box_url href="boxes/ubuntu-base-oss.box" image
         /    |  | 
-        /    a[href="https://github.com/derecom/veewee-boxes/tree/master/definitions/ubuntu-base-oss"] definition
+        /    a href="https://github.com/derecom/veewee-boxes/tree/master/definitions/ubuntu-base-oss" definition
 
     h3 Usage
     p
@@ -66,9 +66,45 @@ html
         don't have it available yet.
 
     p
-      | If you, instead, want to use of our boxes independently from our
-        projects, you can just keep the URL provided below and add it to your
-        Vagrant base box collection!
+      | If you, instead, want to use one of our boxes independently from our
+        projects, you can just keep the corresponding URL provided above and
+        add it to your Vagrant base box collection:
+      pre#usage_cmd vagrant box add {name} {url}
+
+    h3 Definitions
+    p
+      | Base boxes are built using
+      a<> href='https://github.com/jedi4ever/veewee' VeeWee
+      | . The complete catalog can be found
+      a<> href='https://github.com/derecom/veewee-boxes' here
+      | . Clicking on the link next to each base box row will bring you to the
+        root of the veewee definition for that box.
+    p
+      | Please note that
+      strong< base boxes not included in this page are not supposed to work
+              out of the box with Vagrant
+      | ; i.e., they use a different keypair from the standard one, so if you 
+        want to use them in a passwordless fashion, you need to modify them so
+        that the default Vagrant public key and user are setup during build.
 
     script src="http://code.jquery.com/jquery.js"
     script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"
+    javascript:
+      setVagrantCmd = function() {
+        var name  = $('.box_name', this).text();
+        var url   = $('.box_url', this)[0].href;
+
+        $('#usage_cmd').text('vagrant box add ' + name + ' ' + url);
+      };
+
+      resetVagrantCmd = function() {
+        $('#usage_cmd').text('vagrant box add {name} {url}');
+      };
+
+      $('.box_details').click(function() {
+        $('.box_details').off('mouseenter');
+        $('.box_details').off('mouseleave');
+      }).click(setVagrantCmd);
+
+      $('.box_details').on('mouseenter', setVagrantCmd);
+      $('.box_details').on('mouseleave', resetVagrantCmd);
